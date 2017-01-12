@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+    	<title>Who are you?</title>
+    	<link rel = "stylesheet" href = "style.css">
+    	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    </head>
+    
+    <body onload = startTime()>
+    	<div class = "focusArea" id="focusArea" onmousemove="getPos(event)">
+    		<a href = "hireme.html"><h1>Try and catch me!</h1></a>
+    		<h2>Created by Andrew Maclean</h2>
+    		<p id = "move">hi</p>
+    		<p id = "target">hi</p>
+    		<h1 id = "txt"></h1>
+    	</div>
+    	<script>
+    		var hours = 0;
+    		var minutes = 0;
+    		var seconds = 0;
+    		function startTime() {
+    			seconds++;
+    			if(seconds >= 60)
+    			{
+    				minutes++;
+    				seconds = 0;
+    				minutes = checkTime(minutes);
+    			}
+			    seconds = checkTime(seconds);
+			    document.getElementById('txt').innerHTML =
+			    hours + ":" + minutes + ":" + seconds;
+			    var t = setTimeout(startTime, 1000);
+			}
+			function checkTime(i) {
+			    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+			    return i;
+			}
+
+    		var target = document.getElementById("target");
+
+	    	var a = window.innerWidth - 50;
+	    	var b = window.innerHeight - 50;
+	    	var w = Math.floor((Math.random() * a) + 1);
+	    	var h = Math.floor((Math.random() * b) + 1);
+
+	    	target.style.left = w + "px";
+	    	target.style.top = h + "px";
+
+    		function getPos(e){
+	    		x=e.clientX + 2;
+	    		y=e.clientY + 2;
+
+	    		var move = document.getElementById("move");
+	    		move.style.top = y + "px";
+	    		move.style.left = x + "px";
+
+	    		if((x >= w && x <= (w + 50)) && (y >= h && y <= (h + 50)))
+	    		{
+
+	    			w = Math.floor((Math.random() * a) + 1);
+			    	h = Math.floor((Math.random() * b) + 1);
+
+			    	target.style.left = w + "px";
+			    	target.style.top = h + "px";
+	    		}
+    		}
+
+    	</script>
+    </body>
+    </html>
